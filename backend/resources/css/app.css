@@ -1,0 +1,159 @@
+@import "markdown.css";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --background: 0 0% 100%;
+        --foreground: 240 10% 3.9%;
+        --card: 0 0% 100%;
+        --card-foreground: 240 10% 3.9%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 240 10% 3.9%;
+        --primary: 240 5.9% 10%;
+        --primary-foreground: 0 0% 98%;
+        --secondary: 240 4.8% 95.9%;
+        --secondary-foreground: 240 5.9% 10%;
+        --muted: 240 4.8% 95.9%;
+        --muted-foreground: 240 3.8% 46.1%;
+        --accent: 240 4.8% 95.9%;
+        --accent-foreground: 240 5.9% 10%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 240 5.9% 90%;
+        --input: 240 5.9% 90%;
+        --ring: 240 5.9% 10%;
+        --radius: 0.5rem;
+    }
+
+    .dark {
+        --background: 240 10% 3.9%;
+        --foreground: 0 0% 98%;
+        --card: 240 10% 3.9%;
+        --card-foreground: 0 0% 98%;
+        --popover: 240 10% 3.9%;
+        --popover-foreground: 0 0% 98%;
+        --primary: 0 0% 98%;
+        --primary-foreground: 240 5.9% 10%;
+        --secondary: 240 3.7% 15.9%;
+        --secondary-foreground: 0 0% 98%;
+        --muted: 240 3.7% 15.9%;
+        --muted-foreground: 240 5% 64.9%;
+        --accent: 240 3.7% 15.9%;
+        --accent-foreground: 0 0% 98%;
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 240 3.7% 15.9%;
+        --input: 240 3.7% 15.9%;
+        --ring: 240 4.9% 83.9%;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-primary-foreground text-foreground;
+        scrollbar-width: thin;
+    }
+
+    .blue-footer {
+        background-color: #001c53;
+    }
+
+    .red-footer {
+        background-color: #860404;
+    }
+
+    .frontend * {
+        @apply font-roboto;
+    }
+
+    .toast-failed {
+        @apply text-red-700 bg-white border-0 rounded-sm !important;
+    }
+
+    .toast-success {
+        @apply text-green-700 bg-white border-0 rounded-sm !important;
+    }
+
+    .text-gradient {
+        @apply text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-700;
+    }
+
+
+}
+
+@layer components {
+    html {
+        scrollbar-width: thin;
+    }
+    .dark::-webkit-scrollbar {
+        width: 12px; /* Width of the scrollbar */
+    }
+
+    .dark::-webkit-scrollbar-track {
+        background: #2e2e2e; /* Color of the scrollbar track */
+    }
+
+    .dark::-webkit-scrollbar-thumb {
+        background-color: #252525; /* Color of the scrollbar thumb */
+        border-radius: 10px; /* Roundness of the scrollbar thumb */
+        border: 3px solid #ff0000; /* Padding around the scrollbar thumb */
+    }
+
+    .dark {
+        -ms-overflow-style: none; /* For Internet Explorer and Edge */
+        scrollbar-color: #000000 #363636; /* Color of the scrollbar thumb and track */
+    }
+
+    .swiper {
+        width: 100%;
+        height: 100%;
+    }
+
+    .swiper-slide {
+        text-align: center;
+        font-size: 100px;
+        background: #fff;
+
+        /* Center slide text vertically */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .swiper-slide {
+        width: 80%;
+    }
+
+    .swiper-slide:nth-child(2n) {
+        width: 60%;
+    }
+
+    .swiper-slide:nth-child(3n) {
+        width: 40%;
+    }
+}
+
+@layer components {
+    .hide-scroll::-webkit-scrollbar {
+        display: none;
+    }
+
+    .hide-scroll {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+}

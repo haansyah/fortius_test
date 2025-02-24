@@ -1,0 +1,60 @@
+models:
+  # shorthand
+  Widget: id
+    softDeletes
+    timestamps
+
+  Post:
+    title: string:400
+    content: longtext
+    published_at: nullable timestamp
+    payment_token: string:40
+    total: decimal:8,2
+    status: enum:pending,successful,failed
+    email: string:100 nullable index
+    user_id: id foreign
+    owner_id: id foreign:users
+    uid: id foreign:users.id
+    relationships:
+      hasMany: Comment:reply
+      belongsToMany: Team:&Membership
+      belongsTo: \Spatie\LaravelPermission\Models\Role
+      # belongsToMany: Media, Site
+
+  Comment:
+    content: longtext
+    published_at: nullable timestamp
+
+seeders: Post, Comment, Widget
+
+controllers:
+  Post:
+    # shorthand
+    # resource
+    index:
+      query: all
+      # query: where:title where:content order:published_at limit:5
+      render: post.index with:posts
+      resource: user
+      # resource: paginate:users
+    create:
+      find: user.id
+      render: post.create with:user
+    show:
+      query: all:comments
+      render: post.show with:post,foo,bar
+      find: user.id
+      redirect: post.show with:post
+      respond: post.show with:post
+    store:
+      validate: title, content
+      save: post
+      send: ReviewNotification to:post.author with:post
+      dispatch: SyncMedia with:post
+      fire: NewPost with:post
+      flash: post.title
+      redirect: post.index
+      notify: post.author ReviewPost with:post
+      # notify: user AccountAlert
+      # send: ReviewPost to:post.author with:post
+      # store: post.title

@@ -1,0 +1,10 @@
+models:
+  # DONE
+  Employee:
+    name: string
+    email: string,unique
+    position: string
+    salary: BigInteger
+
+
+

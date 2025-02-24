@@ -1,0 +1,70 @@
+models:
+  # DONE
+  Project:
+    title: string
+    subtitle: string
+    slug: string
+    content: text
+    image: string nullable
+    status: enum:publish,archive
+    location: string
+    site_area: string
+    building_area: string
+    year: string
+    client: string
+    type: enum:Architecture,Interior,Masterplan
+    categories: enum:Residential,Commercial,Public,Institutional,Industrial
+    relationships:
+      hasMany: ImageProject:image,Category:title
+
+  ImageProject:
+    project_id: integer
+    image: string
+    status: enum:publish,archive
+    relationships:
+      belongsTo: Project
+
+  CategoryProject:
+    name: string
+    status: enum:publish,archive
+
+  Services:
+    title: string
+    content: text
+    image: string nullable
+    status: enum:publish,archive
+
+  Profile:
+    name: string
+    position: string
+    content: text
+    image: string nullable
+    status: enum:publish,archive
+    education: text
+
+  ProfileCategory:
+    name: string
+    status: enum:publish,archive
+
+  Client:
+    name: string
+    status: enum:publish,archive
+
+  Recognition:
+    year: integer
+    content: text
+    image: string nullable
+    status: enum:publish,archive
+
+  # DONE
+  Mail:
+    full_name: string
+    email: string email
+    phone: string nullable
+    message: text
+    status: enum:unread,read,replied
+
+  Setting:
+    key: string
+    value: text nullable
+    type: enum:image,string

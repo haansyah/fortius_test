@@ -1,0 +1,103 @@
+created:
+    - database/factories/ProjectFactory.php
+    - database/factories/ImageProjectFactory.php
+    - database/factories/CategoryProjectFactory.php
+    - database/factories/ServicesFactory.php
+    - database/factories/ProfileFactory.php
+    - database/factories/CategoryProfileFactory.php
+    - database/factories/ClientFactory.php
+    - database/factories/RecognitionFactory.php
+    - database/factories/MailFactory.php
+    - database/factories/SettingFactory.php
+    - database/migrations/2025_01_11_080009_create_projects_table.php
+    - database/migrations/2025_01_11_080010_create_image_projects_table.php
+    - database/migrations/2025_01_11_080011_create_category_projects_table.php
+    - database/migrations/2025_01_11_080012_create_services_table.php
+    - database/migrations/2025_01_11_080013_create_profiles_table.php
+    - database/migrations/2025_01_11_080014_create_category_profiles_table.php
+    - database/migrations/2025_01_11_080015_create_clients_table.php
+    - database/migrations/2025_01_11_080016_create_recognitions_table.php
+    - database/migrations/2025_01_11_080017_create_mails_table.php
+    - database/migrations/2025_01_11_080018_create_settings_table.php
+    - app/Models/Project.php
+    - app/Models/ImageProject.php
+    - app/Models/CategoryProject.php
+    - app/Models/Services.php
+    - app/Models/Profile.php
+    - app/Models/CategoryProfile.php
+    - app/Models/Client.php
+    - app/Models/Recognition.php
+    - app/Models/Mail.php
+    - app/Models/Setting.php
+models:
+    ContactUs: {}
+    Permission: { name: string, guard_name: string }
+    Role: { name: string, guard_name: string }
+    User:
+        {
+            name: string,
+            email: string,
+            email_verified_at: "timestamp nullable",
+            password: string,
+            image: "string nullable",
+            remember_token: "string:100 nullable",
+        }
+    Project:
+        {
+            title: string,
+            subtitle: string,
+            slug: string,
+            content: text,
+            image: "string nullable",
+            status: "enum:publish,archive",
+            location: string,
+            site_area: string,
+            building_area: string,
+            year: string,
+            client: string,
+            type: "enum:Architecture,Interior,Masterplan",
+            categories: "enum:Residential,Commercial,Public,Institutional,Industrial",
+            relationships: { hasMany: "ImageProject:image,Category:title" },
+        }
+    ImageProject:
+        {
+            project_id: integer,
+            image: string,
+            status: "enum:publish,archive",
+            relationships: { belongsTo: Project },
+        }
+    CategoryProject: { name: string, status: "enum:publish,archive" }
+    Services:
+        {
+            title: string,
+            content: text,
+            image: "string nullable",
+            status: "enum:publish,archive",
+        }
+    Profile:
+        {
+            name: string,
+            position: string,
+            content: text,
+            image: "string nullable",
+            status: "enum:publish,archive",
+            education: text,
+        }
+    CategoryProfile: { name: string, status: "enum:publish,archive" }
+    Client: { name: string, status: "enum:publish,archive" }
+    Recognition:
+        {
+            year: integer,
+            content: text,
+            image: "string nullable",
+            status: "enum:publish,archive",
+        }
+    Mail:
+        {
+            full_name: string,
+            email: "string email",
+            phone: "string nullable",
+            message: text,
+            status: "enum:unread,read,replied",
+        }
+    Setting: { key: string, value: "text nullable", type: "enum:image,string" }
