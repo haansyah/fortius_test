@@ -68,9 +68,9 @@ class APIEmployeeController extends Controller
 
     public function store(Request $request) {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|min:3|max:255',
-            'email' => 'required|email|unique:employees,email|min:3|max:255',
-            'position' => 'required|string|min:3',
+            'name' => 'required|string|min:3|max:100',
+            'email' => 'required|email|unique:employees,email|min:3|max:100',
+            'position' => 'required|string|min:3|max:50',
             'salary' => 'required|numeric|min:1000000'
         ]);
 
@@ -98,9 +98,9 @@ class APIEmployeeController extends Controller
 
     public function update (Request $request, $id) {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|min:3|max:255',
-            'email' => 'required|email|unique:employees,email,'.$id.'|min:3|max:255',
-            'position' => 'required|string|min:3',
+            'name' => 'required|string|min:3|max:100',
+            'email' => 'required|email|unique:employees,email,'.$id.'|min:3|max:100',
+            'position' => 'required|string|min:3|max:50',
             'salary' => 'required|numeric|min:1000000'
         ]);
 
